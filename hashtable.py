@@ -1,5 +1,8 @@
 #!python
 
+"""Recived Help from Steven on this Assignment
+           https://github.com/Xisouyang  """
+
 from linkedlist import LinkedList
 
 
@@ -26,8 +29,7 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Calculate load factor
-        # return ...
+        return self.length()/ len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
@@ -130,6 +132,7 @@ class HashTable(object):
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
+            self.size -= 1
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -146,12 +149,17 @@ class HashTable(object):
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
         # TODO: Get a list to temporarily hold all current key-value entries
-        # ...
+        temp_list = self.items()
         # TODO: Create a new list of new_size total empty linked list buckets
-        # ...
+        self.size = 0
+        new_bucket = []
+        for i in range(new_size):
+            new_bucket.append(LinkedList())
+        self.buckets = new_bucket
         # TODO: Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
-        # ...
+        for key, value in temp_list:
+            self.set(key, value)
 
 
 def test_hash_table():
