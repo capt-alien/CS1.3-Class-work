@@ -12,17 +12,24 @@ class Set(object):
             self.add(item)
 
 #Operations on single element:
+
     def size(self, element):
         return self.hash_set.size
 
+    def contains(self, element):
+        #return a boolian if element is in set
+        return self.hash_set.contains(element)
+
     def add(self, element):
-        pass
+        #adds an element to the set
+        if self.contains(element) == False:
+            self.hash_set.set(element, value = None)
 
     def remove(self, element):
-        pass
+        if self.contains(element) == True:
+            self.hash_set.delete(element)
 
-    def contains(self, element):
-        pass
+
 
 #Operations on another set
 
