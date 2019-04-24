@@ -117,13 +117,9 @@ class HashTable(object):
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value)) # O(1)
         self.size += 1
-
         # TODO: Check if the load factor exceeds a threshold such as 0.75
         if self.load_factor() > 0.75:
-            self._resize() # O(n)
-        # ...
-        # TODO: If so, automatically resize to reduce the load factor
-        # ...
+            self._resize() 
 
 
     def delete(self, key):
