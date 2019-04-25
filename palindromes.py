@@ -46,20 +46,21 @@ def is_palindrome_iterative(text):
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-    # if sting is ''
-    if len(text_list)==0:
-        return True
+    #Process text to list removing special letters
+    lower= text.lower()
+    text_list = re.findall('[a-z]', lower)
     # If first round
     if left == None:
         left = 0
         right = len(text_list)-1
-        lower= text.lower()
-        text_list = re.findall('[a-z]', lower)
+    # if were finished itterating through string ''
+    if left >= right:
+        return True
+
+
     # escape clause if true
     if text_list[left] != text_list[right]:
         return False
-    elif left >= right:
-        return True
     else:
         return is_palindrome_recursive(text, left + 1 , right-1)
 
