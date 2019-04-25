@@ -2,8 +2,6 @@
 from hashtable import HashTable
 
 class Set(object):
-
-
     #init method adds elements in sequence
     def __init__(self, elements= None):
         # init as hash HashTable
@@ -11,8 +9,8 @@ class Set(object):
         if elements != None:
             self.add(item)
 
-#Operations on single element:
 
+#Operations on single element:
     def size(self, element):
         return self.hash_set.size
 
@@ -30,9 +28,7 @@ class Set(object):
             self.hash_set.delete(element)
 
 
-
 #Operations on another set
-
     def union(self, set_b):
         pass
 
