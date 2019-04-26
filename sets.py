@@ -52,7 +52,7 @@ class Set(object):
     def difference(self, set_b):
         """Returns a new set that is the difference between the two sets"""
         for item in self.hash_set.keys():
-            if set_b.hash_set.contains(item) = False:
+            if set_b.hash_set.contains(item) == False:
                 temp.set(item, None)
         self.hash_set = temp
         return self
