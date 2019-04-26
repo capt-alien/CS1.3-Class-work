@@ -96,18 +96,51 @@ class SetTest(unittest.TestCase):
         assert test_set.contains("word to your mother") ==True
 
     def test_remove(self):
-        pass
+        test_set = Set(['a','b','c'])
+        assert test_set.hash_set.size == 3
+        test_set.remove('b')
+        assert test_set.hash_set.size == 2
 
 
 # TEst for multiple sets
     def test_union(self):
-        pass
+        set_a = Set(['a', 'b', 'c'])
+        set_b = Set(['x', 'y'])
+        union_set = set_a.union(set_b)
+        self.assertCountEqual(union_set.hash_set.keys(), ['a', 'b', 'c', 'x', 'y'])
+        set_c = Set(['word', 'to', 'your'])
+        set_d = Set(['mother'])
+        union_set_2 = set_c.union(set_d)
+        self.assertCountEqual(union_set_2.hash_set.keys(), ['word', 'to', 'your', 'mother'])
+        set_e = Set([1, 2, 3])
+        set_f = Set([4, 5])
+        union_set_3 = set_e.union(set_f)
+        self.assertCountEqual(union_set_3.hash_set.keys(), [1,2,3,4,5])
 
     def test_intersection(self):
-        pass
+        set_a = Set(['a', 'b', 'c'])
+        set_b = Set(['b', 'c', 'x', 'y'])
+        intersect_set = set_a.intersection(set_b)
+        self.assertCountEqual(union_set.hash_set.keys(), ['b', 'c'])
+        set_c = Set([1,2,3,4,5])
+        set_d = Set([4,5,6,7])
+        intersect_set_2 = set_c.intersection(set_d)
+        self.assertCountEqual(union_set.hash_set.keys(), [4,5])
 
     def test_difference(self):
-        pass
+        set_a = Set(['a', 'b', 'c'])
+        set_b = Set(['b', 'c', 'x', 'y'])
+        diff_set = set_a.difference(set_b)
+        self.assertCountEqual(union_set.hash_set.keys(), ['a', 'x', 'y'])
+        set_c = Set([1,2,3,4,5])
+        set_d = Set([4,5,6,7])
+        intersect_set_2 = set_c.intersection(set_d)
+        self.assertCountEqual(union_set.hash_set.keys(), [1,2,3,6,7])
 
     def test_is_subset(self):
-        pass
+        set_a = Set(['a', 'b', 'c'])
+        set_b = Set(['x', 'y'])
+        subset = set_a.is_subset(set_b) == False
+        set_c = Set(['a', 'b', 'c', 'd', 'e'])
+        set_d = Set(['c', 'd'])
+        subset = set_c.is_subset(set_d) == True

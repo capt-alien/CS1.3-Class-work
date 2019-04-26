@@ -3,12 +3,13 @@ from hashtable import HashTable
 
 class Set(object):
     #init method adds elements in sequence
-    def __init__(self, elements= None):
+    def __init__(self, elements=None):
         # init as hash HashTable
         self.hash_set = HashTable
+        print("************Hashtable init*********")
         if elements != None:
-            self.add(item)
-
+            for item in elements:
+                self.add(item)
 
 #Operations on single element:
     def size(self, element):
@@ -30,13 +31,23 @@ class Set(object):
 
 #Operations on another set
     def union(self, set_b):
+        """Returns a new set that is the union of two sets"""
         pass
 
     def intersection(self, set_b):
+        """Returns a new set as intersetction of two sets"""
         pass
 
     def difference(self, set_b):
+        """Returns a new set that is the difference between the two sets"""
         pass
 
     def is_subset(self, set_b):
+        """Returns a boolian indicating if one set has all the elements
+        of the other in it"""
         pass
+
+
+if __name__ == '__main__':
+    set = Set(['a', 'b', 'c'])
+    print(set)

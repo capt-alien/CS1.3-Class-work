@@ -76,6 +76,7 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
+        print(key)
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Check if an entry with the given key exists in that bucket
@@ -119,7 +120,7 @@ class HashTable(object):
         self.size += 1
         # TODO: Check if the load factor exceeds a threshold such as 0.75
         if self.load_factor() > 0.75:
-            self._resize() 
+            self._resize()
 
 
     def delete(self, key):
