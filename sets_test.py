@@ -53,7 +53,7 @@ class SetTest(unittest.TestCase):
         assert test_set.contains('c') == True
         # Edge Cases
         assert test_set.contains(1) == True
-        assert test_set.contains(1.2) == True
+        assert test_set.contains(2.1) == True
         assert test_set.contains('x') == False
         assert test_set.contains('xyz') == False
         assert test_set.contains(2) == False
@@ -121,21 +121,26 @@ class SetTest(unittest.TestCase):
         set_a = Set(['a', 'b', 'c'])
         set_b = Set(['b', 'c', 'x', 'y'])
         intersect_set = set_a.intersection(set_b)
-        self.assertCountEqual(union_set.hash_set.keys(), ['b', 'c'])
+        self.assertCountEqual(intersect_set.hash_set.keys(), ['b', 'c'])
         set_c = Set([1,2,3,4,5])
         set_d = Set([4,5,6,7])
         intersect_set_2 = set_c.intersection(set_d)
-        self.assertCountEqual(union_set.hash_set.keys(), [4,5])
+        self.assertCountEqual(intersect_set_2.hash_set.keys(), [4,5])
 
     def test_difference(self):
         set_a = Set(['a', 'b', 'c'])
         set_b = Set(['b', 'c', 'x', 'y'])
         diff_set = set_a.difference(set_b)
-        self.assertCountEqual(union_set.hash_set.keys(), ['a', 'x', 'y'])
+        assert diff_set.contains('c') == False
+        assert diff_set.contains('a') == True
+        assert diff_set.contains('y') == True
+
         set_c = Set([1,2,3,4,5])
         set_d = Set([4,5,6,7])
-        intersect_set_2 = set_c.intersection(set_d)
-        self.assertCountEqual(union_set.hash_set.keys(), [1,2,3,6,7])
+        diff_set_2 = set_c.difference(set_d)
+        assert diff_set_2.contains(4) == False
+        assert diff_set_2.contains(1)== True
+        assert diff_set_2.contains(7) == True
 
     def test_is_subset(self):
         set_a = Set(['a', 'b', 'c'])

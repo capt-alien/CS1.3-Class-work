@@ -76,7 +76,6 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
-        print(key)
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Check if an entry with the given key exists in that bucket
