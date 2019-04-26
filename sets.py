@@ -6,7 +6,6 @@ class Set(object):
     def __init__(self, elements=None):
         # init as hash HashTable
         self.hash_set = HashTable
-        print("************Hashtable init*********")
         if elements != None:
             for item in elements:
                 self.add(item)
@@ -32,20 +31,44 @@ class Set(object):
 #Operations on another set
     def union(self, set_b):
         """Returns a new set that is the union of two sets"""
-        pass
+        temp = HashTable()
+        for item in self.hash_set.keys():
+            temp.set(item, None)
+        for item in set_b.hash_set.keys():
+            temp.set(item, None)
+        self.hash_set = temp
+        return self
+
 
     def intersection(self, set_b):
         """Returns a new set as intersetction of two sets"""
-        pass
+        temp = HashTable()
+        for item in self.hash_set.keys():
+            if set_b.hash_set.contains(item):
+                temp.set(item, None)
+        self.hash_set = temp
+        return self
 
     def difference(self, set_b):
         """Returns a new set that is the difference between the two sets"""
-        pass
+        for item in self.hash_set.keys():
+            if set_b.hash_set.contains(item) = False:
+                temp.set(item, None)
+        self.hash_set = temp
+        return self
 
     def is_subset(self, set_b):
         """Returns a boolian indicating if one set has all the elements
         of the other in it"""
-        pass
+        #if the first set is larger then it cannot be a sub
+        if self.hash_set.size > set_b.hash_set.size:
+            return false
+        #itterate over set to see if elemets are contined in set_b
+        for item in self.hash_set:
+            if set_b.hash_set.contains(item) == False:
+                return False
+            else:
+                return True
 
 
 if __name__ == '__main__':
