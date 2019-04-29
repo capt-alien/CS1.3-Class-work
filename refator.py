@@ -6,7 +6,7 @@ def validator():
     print("press 2 to subtract")
     print("press 3 to multiply")
     oporator = input("press 4 to divide")
-    
+
 
 def calcualtor():
     first_input = input("enter first number")
