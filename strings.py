@@ -9,6 +9,7 @@ def z_pattern(text):
     else:
         return False
 
+
 def find_all_indexes(text, pattern):
     # time complexity: O(n) due to for loop.
     #Space complexity: O(n^2) due to new lists
@@ -23,6 +24,7 @@ def find_all_indexes(text, pattern):
         if text[i:right] == pattern:
             indicies.append(i)
     return indicies
+
 
 def contains(text, pattern):
     # time complexity: O(n) due to for loop in find_all_indexes
