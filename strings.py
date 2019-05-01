@@ -1,55 +1,69 @@
-#!python
 import sys
 
-
-def contains(text, pattern):
-    #O^n
-    assert isinstance(text, str), 'text is not a string: {}'.format(text)
-    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    pat_size = len(pattern)
+#Create some helper functions
+def z_pattern(text):
+    """Returns bollean if patteren is empty string"""
+    pat_size = len(text)
     if pat_size ==0:
         return True
-        # While Loop
-    for i in range(0,len(text)-len(pattern)+1):
-        right = (i +pat_size)
-        if text[i:right] == pattern:
-            return True
-    return False
-
-
-def find_index(text, pattern):
-    #O^n
-    # Return the starting index of the first occurrence of pattern in text,
-    # or None if not found.
-    assert isinstance(text, str), 'text is not a string: {}'.format(text)
-    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
-    pat_size = len(pattern)
-    if pat_size ==0:
-        return 0
-        # While Loop
-    for i in range(0,len(text)-len(pattern)+1):
-        right = (i +pat_size)
-        if text[i:right] == pattern:
-            return i
-
+    else:
+        return False
 
 def find_all_indexes(text, pattern):
-    # O^n
+    # time complexity: O(n) due to for loop.
+    #Space complexity: O(n^2) due to new lists
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    pat_size = len(pattern)
     indicies = []
-    if pat_size ==0:
-        for i in range(0,len(text)):
-            indicies.append(i)
+    if z_pattern(text):
         return indicies
         # While Loop
-    for i in range(0,len(text)-len(pattern)+1):
-        right = (i +pat_size)
+    for i in range(len(text)):
+        right = (i +len(pattern))
         if text[i:right] == pattern:
             indicies.append(i)
     return indicies
+
+def contains(text, pattern):
+    # time complexity: O(n) due to for loop in find_all_indexes
+    #Space complexity: O(n^2) due to new lists in find_all_indexes
+    assert isinstance(text, str), 'text is not a string: {}'.format(text)
+    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+    if find_all_indexes(text, pattern) != []:
+        return True
+    else:
+        return False
+    # code from before refactor:
+    # if z_pattern(pattern):
+    #     return True
+    #     # While Loop
+    # for i in range(0,len(text)-len(pattern)+1):
+    #     right = (i +len(pattern))
+    #     if text[i:right] == pattern:
+    #         return True
+    # else:
+    #     return False
+
+
+def find_index(text, pattern):
+    # time complexity: O(n) due to for loop in find_all_indexes
+    #Space complexity: O(n^2) due to new lists in find_all_indexes
+    assert isinstance(text, str), 'text is not a string: {}'.format(text)
+    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+    # TODO: Implement find_index here (iteratively and/or recursively)
+    first=find_all_indexes(text, pattern)
+    if len(first)>0:
+        return first[0]
+    else:
+        return None
+    #Code from before refactor:
+    # if z_pattern(pattern):
+    #     return 0
+    #     # While Loop
+    # for i in range(len(text)):
+    #     right = (i +len(pattern))
+    #     if text[i:right] == pattern:
+    #         return i
 
 
 def test_string_algorithms(text, pattern):
