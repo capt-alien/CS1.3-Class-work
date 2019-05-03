@@ -99,11 +99,6 @@ class BinarySearchTree(object):
         TODO: Best case running time: ??? under what conditions?
         TODO: Worst case running time: ??? under what conditions?"""
         #check if item exists:
-        # if self.contains(item) == True:
-        #     return {'message:', '{} already exists in Binary Tree'.format(item)}
-            #create new node
-        # new_node = BinaryTreeNode(item)
-        # Handle the case where the tree is emptyitem
         if self.is_empty():
             # TODO: Create a new root node
             self.root = BinaryTreeNode(item)
@@ -112,12 +107,13 @@ class BinarySearchTree(object):
             return
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
+        print(item)
 # TODO: Check if the given item should be inserted left of parent node
-        if item < parent.data:
+        if parent.data > item:
             # TODO: Create a new node and set the parent's left child
             parent.left = BinaryTreeNode(item)
         # TODO: Check if the given item should be inserted right of parent node
-        elif item > parent.data:
+        elif parent.data < item:
             # TODO: Create a new node and set the parent's right child
             parent.right = BinaryTreeNode(item)
         # TODO: Increase the tree size
