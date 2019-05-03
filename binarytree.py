@@ -160,11 +160,11 @@ class BinarySearchTree(object):
             return node
             # Return the found nod
         # TODO: Check if the given item is less than the node's data
-        elif node.data < item:
+        elif node.data > item:
             # TODO: Recursively descend to the node's left child, if it exists
             return self._find_node_recursive(item, node.left)
         # TODO: Check if the given item is greater than the node's data
-        elif node.data > item:
+        elif node.data < item:
             # TODO: Recursively descend to the node's right child, if it exists
             return self._find_node_recursive(item, node.right)
 
