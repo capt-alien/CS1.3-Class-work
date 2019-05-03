@@ -43,6 +43,8 @@ class StackTest(unittest.TestCase):
         assert s.length() == 3
         assert s.is_empty() is False
 
+[]
+
     def test_peek(self):
         s = Stack()
         assert s.peek() is None

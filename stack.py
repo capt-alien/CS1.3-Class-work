@@ -75,8 +75,8 @@ class ArrayStack(object):
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
-        self.list.insert(0,item)
+        Running time: O(1) – Why? inserts at the end of the list"""
+        self.list.insert((self.length()),item)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
@@ -84,20 +84,20 @@ class ArrayStack(object):
         if self.is_empty():
             return None
         else:
-            return self.list[0]
+            return self.list[(self.length()-1)]
 
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? it skips to end of the list and pulls from there"""
         if self.is_empty():
             raise ValueError("list is empty")
         else:
-            magazine = self.list.pop(0)
+            magazine = self.list.pop((self.length()-1))
             return magazine
 
 
 # Implement LinkedStack and ArrayStack above, then change the assignment below
 # to use each of your Stack implementations to verify they each pass all tests
-Stack = LinkedStack
+Stack = ArrayStack
 # Stack = ArrayStack

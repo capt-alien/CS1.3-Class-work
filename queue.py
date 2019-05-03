@@ -99,8 +99,11 @@ class ArrayQueue(object):
             tube = self.list.pop(0)
             return tube
 
-
+# if __name__=='__main__':
+#     q= ArrayQueue(['a', 'b', 'c'])
+#     print(q)
 # Implement LinkedQueue and ArrayQueue above, then change the assignment below
 # to use each of your Queue implementations to verify they each pass all tests
+# Queue = LinkedQueue
+
 Queue = ArrayQueue
-# Queue = ArrayQueue
