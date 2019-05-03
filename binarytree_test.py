@@ -1,5 +1,5 @@
 #!python
-
+from queue import Queue
 from binarytree import BinarySearchTree, BinaryTreeNode
 import unittest
 
@@ -275,6 +275,13 @@ class BinarySearchTreeTest(unittest.TestCase):
         # Ensure the level-order traversal of tree items is ordered correctly
         assert tree.items_level_order() == [4, 2, 6, 1, 3, 5, 7]
 
+#
+# if __name__ == '__main__':
+#     unittest.main()
 
-if __name__ == '__main__':
-    unittest.main()
+# q = Queue()
+# q.enqueue(1)
+# q.enqueue(2)
+# print(dir(q))
+# print(q.dequeue())
+# print(q.dequeue())

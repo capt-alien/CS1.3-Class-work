@@ -1,6 +1,6 @@
 #!python
 from queue import Queue
-"""Code Cred:I used code from Anisha, Faith, and Lucia when I got stuck"""
+"""Code Cred: When I get stuck I borrowed code from Anisha, Faith, and Lucia"""
 
 class BinaryTreeNode(object):
 
@@ -92,7 +92,9 @@ class BinarySearchTree(object):
         # Find a node with the given item, if any
         node = self._find_node_recursive(item, self.root)
         # TODO: Return the node's data if found, or None
-        return node.data if node else None
+        if node is None:
+            return None
+        return node.data
 
     def insert(self, item):
         """Insert the given item in order into this binary search tree.
@@ -107,7 +109,6 @@ class BinarySearchTree(object):
             return
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
-        print(item)
 # TODO: Check if the given item should be inserted left of parent node
         if parent.data > item:
             # TODO: Create a new node and set the parent's left child
@@ -211,13 +212,13 @@ class BinarySearchTree(object):
             # Return the parent of the found node
             return parent
         #Check if the given item is less than the node's data
-        elif node.data < item:
-            #Recursively descend to the node's left child, if it exists
-            return self._find_parent_node_recursive(item, node = node.left, parent = node)
-        #Check if the given item is greater than the node's data
         elif node.data > item:
+            #Recursively descend to the node's left child, if it exists
+            return self._find_parent_node_recursive(item, node.left, node)
+        #Check if the given item is greater than the node's data
+        elif node.data < item:
             #Recursively descend to the node's right child, if it exists
-            return self._find_parent_node_recursive(item, node = node.right, parent = node)
+            return self._find_parent_node_recursive(item, node.right, node)
 
     def delete(self, item):
         """Remove given item from this tree, if present, or raise ValueError.
@@ -335,9 +336,9 @@ class BinarySearchTree(object):
         # TODO: Enqueue given starting node
         queue.enqueue(start_node)
         # TODO: Loop until queue is empty
-        while queue.is_empty == False:
+        while queue.is_empty() == False:
             # TODO: Dequeue node at front of queue
-            node = queue.dequeue
+            node = queue.dequeue()
             # TODO: Visit this node's data with given function
             visit(node.data)
             # TODO: Enqueue this node's left child, if it exists
