@@ -1,6 +1,6 @@
 #!python
-from queue import LinkedQueue
-
+from queue import Queue
+"""Code Cred:I used code from Anisha, Faith, and Lucia when I got stuck"""
 
 class BinaryTreeNode(object):
 
@@ -17,14 +17,18 @@ class BinaryTreeNode(object):
     def is_leaf(self):
         """Return True if this node is a leaf (has no children)."""
         # TODO: Check if both left child and right child have no value
-        if self.right | self.left:
+        if self.right or self.left:
             return False
+        else:
+            return True
 
     def is_branch(self):
         """Return True if this node is a branch (has at least one child)."""
         # TODO: Check if either left child or right child has a value
         if self.right or self.left:
             return True
+        else:
+            return False
 
     def height(self):
         """Return the height of this node (the number of edges on the longest
@@ -32,19 +36,15 @@ class BinaryTreeNode(object):
         TODO: Best and worst case running time: ??? under what conditions?
             Best: O if node is the root
             Worst: O(1) if many layers of nodes"""
-        # TODO: Check if left child has a value and if so calculate its height
-        l_height = 0
+        if self.left == None and self.right == None:
+            return 0
+        left = 0
+        right = 0
         if self.left:
-            l_height += 1+ self.left.height()
-        # TODO: Check if right child has a value and if so calculate its height
-        r_height = 0
+            left = 1 + self.left.height()
         if self.right:
-            l_height += 1 + self.right.height()
-        # Return one more than the greater of the left height and right height
-        if l_height > r_height:
-            return l_height
-        else:
-            return r_height
+            right = 1 + self.right.height()
+        return max(left, right)
 
 
 class BinarySearchTree(object):
@@ -110,11 +110,9 @@ class BinarySearchTree(object):
             # TODO: Increase the tree size
             self.size += 1
             return
-
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
-        print(dir(parent)
-        # TODO: Check if the given item should be inserted left of parent node
+# TODO: Check if the given item should be inserted left of parent node
         if item < parent.data:
             # TODO: Create a new node and set the parent's left child
             parent.left = BinaryTreeNode(item)
@@ -123,7 +121,7 @@ class BinarySearchTree(object):
             # TODO: Create a new node and set the parent's right child
             parent.right = BinaryTreeNode(item)
         # TODO: Increase the tree size
-            self.size += 1
+        self.size += 1
 
     def _find_node_iterative(self, item):
         """Return the node containing the given item in this binary search tree,
@@ -182,7 +180,7 @@ class BinarySearchTree(object):
         TODO: Worst case running time: ??? under what conditions?"""
         # Start with the root node and keep track of its parent
         node = self.root
-        parent = None
+        parent = parent
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
@@ -211,7 +209,7 @@ class BinarySearchTree(object):
         # Check if starting node exists
         if node is None:
             # Not found (base case)
-            return None
+            return parent
         #Check if the given item matches the node's data
         if node.data == item:
             # Return the parent of the found node
@@ -337,7 +335,7 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Create queue to store nodes not yet traversed in level-order
-        queue = LinkedQueue()
+        queue = Queue()
         # TODO: Enqueue given starting node
         queue.enqueue(start_node)
         # TODO: Loop until queue is empty
