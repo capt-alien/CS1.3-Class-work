@@ -21,6 +21,7 @@ class Set(object):
         return self.size
 
 #Operations on single element:
+  #commented out due to the impliminentation of the __len__
     # def size(self):
     #     """Best/worst case: O(1)"""
     #     return self.size
@@ -82,7 +83,7 @@ class Set(object):
     def difference(self, set_b):
         """Returns a new set that is the difference between the two sets
             Best/worst case: O(n)"""
-        diff_set = set()
+        diff_set = Set()
         #for self
         for item in self:
             if not set_b.contains(item):
