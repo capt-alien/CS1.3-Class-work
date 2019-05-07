@@ -11,10 +11,19 @@ class Set(object):
             for item in elements:
                 self.add(item)
 
-#Operations on single element:
-    def size(self):
-        """Best/worst case: O(1)"""
+    def __iter__(self):
+        """Itterate over elements in the set"""
+        for element in self.hash_set.keys():
+            yield element
+
+    def __len__(self):
+        """gives the class a len properity"""
         return self.size
+
+#Operations on single element:
+    # def size(self):
+    #     """Best/worst case: O(1)"""
+    #     return self.size
 
     def contains(self, element):
         """Best/worst case: O(n)"""
@@ -34,7 +43,6 @@ class Set(object):
             self.hash_set.delete(element)
             self.size -= 1
 
-
 # Your union, intersection, and difference methods
 # should create and return a new set, without altering
 # your set or the given set. Currently, you are initializing
@@ -48,8 +56,11 @@ class Set(object):
         Best/worst case: O(n)"""
         union_set = Set()
         for item in self:
+        # for item in iter(self):
+        # for item in self.__iter__():
+        # for item in self.hash_set.keys():
             union_set.add(item)
-        for item in set_b:
+        for item in set_b.hash_set.keys():
             union_set.add(item)
         return union_set
 
@@ -77,8 +88,8 @@ class Set(object):
             if not set_b.contains(item):
                 diff_set.add(item)
         #for set_b
-        for item in set_b.hash_set.keys():
-            if not self:
+        for item in set_b:
+            if not self.contains(item):
                 diff_set.add(item)
         return diff_set
 
@@ -86,11 +97,11 @@ class Set(object):
         """Returns a boolian indicating if one set has all the elements
         of the other in it. Best/worst case: O(n)"""
         #if the first set is larger then it cannot be a sub
-        if self.hash_set.size > set_b.hash_set.size:
+        if len(self) != len(set_b):
             return False
         #itterate over set to see if elemets are contined in set_b
         for item in self:
-            if set_b.hash_set.contains(item) == False:
+            if not set_b.contains(item):
                 return False
             else:
                 return True
@@ -98,7 +109,7 @@ class Set(object):
 
 if __name__ == '__main__':
     set_a = Set(['a', 'b', 'c'])
-    set_b = Set(['b', 'c', 'x', 'y'])
-    # diff_set = set_a.union(set_b)
-    for x in set_b:
-        print(set_b)
+    set_b = Set(['a','b', 'c', 'x', 'y'])
+    diff_set = set_a.is_subset(set_b)
+    # for x in diff_set:
+    print(diff_set)
