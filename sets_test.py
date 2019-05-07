@@ -60,7 +60,6 @@ class SetTest(unittest.TestCase):
         assert test_set.contains(2.123) == False
         assert test_set.contains("Word") == False
 
-
     def test_add(self):
         test_set = Set()
         assert len(test_set) == 0
@@ -101,7 +100,6 @@ class SetTest(unittest.TestCase):
         test_set.remove('b')
         assert len(test_set) == 2
 
-
 # TEst for multiple sets
     def test_union(self):
         set_a = Set(['a', 'b', 'c'])
@@ -116,6 +114,13 @@ class SetTest(unittest.TestCase):
         set_f = Set([4, 5])
         union_set_3 = set_e.union(set_f)
         self.assertCountEqual(union_set_3.hash_set.keys(), [1,2,3,4,5])
+        #Test for integrity of original sets
+        assert set_a.contains('x') == False
+        assert set_b.contains('a') == False
+        assert set_c.contains('mother') == False
+        assert set_d.contains('word') == False
+        assert set_e.contains(5) == False
+        assert set_f.contains(1) == False
 
     def test_intersection(self):
         set_a = Set(['a', 'b', 'c'])
@@ -126,6 +131,11 @@ class SetTest(unittest.TestCase):
         set_d = Set([4,5,6,7])
         intersect_set_2 = set_c.intersection(set_d)
         self.assertCountEqual(intersect_set_2.hash_set.keys(), [4,5])
+        #Test for integrity of original sets
+        assert set_a.contains('a') == True
+        assert set_b.contains('y') == True
+        assert set_c.contains(1) == True
+        assert set_d.contains(7) == True
 
     def test_difference(self):
         set_a = Set(['a', 'b', 'c'])
@@ -141,6 +151,13 @@ class SetTest(unittest.TestCase):
         assert diff_set_2.contains(4) == False
         assert diff_set_2.contains(1)== True
         assert diff_set_2.contains(7) == True
+
+        #Test for integrity of original sets
+        assert set_a.contains('b') == True
+        assert set_b.contains('c') == True
+        assert set_c.contains(4) == True
+        assert set_d.contains(5) == True
+
 
     def test_is_subset(self):
         set_a = Set(['a', 'b', 'c'])
