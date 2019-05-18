@@ -21,10 +21,6 @@ class Set(object):
         return self.size
 
 #Operations on single element:
-  #commented out due to the impliminentation of the __len__
-    # def size(self):
-    #     """Best/worst case: O(1)"""
-    #     return self.size
 
     def contains(self, element):
         """Best/worst case: O(n)"""
