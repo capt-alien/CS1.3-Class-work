@@ -196,6 +196,7 @@ class BinarySearchTree(object):
                 node = node.right
         # Not found
         return parent
+        #Is this right?
 
     def _find_parent_node_recursive(self, item, node, parent=None):
         """Return the parent node of the node containing the given item
